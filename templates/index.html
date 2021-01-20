@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storm Prediction Dashboard - TN</title>
+</head>
+
+<body>
+
+    
+
+    <div class="main-content" id="apple_default">
+
+        <header class="header">
+            <h2 id="platform">Storm Prediction Dashboard</h2>
+            <h4 id="platform_2">Tamil Nadu & Puducherry</h4>
+        </header>
+
+
+        <form action="{{ url_for('classify')}}" method="post" id="myform">
+
+            <br><h2 id="get_value" style="color: rgb(255, 255, 255);">Get the win direction of the cyclone in 5 seconds</h2><br>
+
+            <div class="div_5">
+                <br><br><h3 style="color: rgb(0, 255, 242);">{{ prediction_text }}<h3>
+            </div>
+
+            <div class="div_1">
+
+                <h3>Select Season</h3>
+                <select name="season" id="season">
+                    <option value="0">Northwest Monsoon</option>
+                    <option value="1">Southwest Monsoon</option>
+                </select>
+
+                <h3>Select Stage</h3>
+                <select name="stages" id="stages">
+                    <option value="0">Well marked Low Pressure</option>
+                    <option value="1">Low Pressure</option>
+                    <option value="2">Deep Depression</option>
+                    <option value="3">Depression</option>
+                    <option value="4">Very Severe Cyclone</option>
+                    <option value="5">Severe Cyclone</option>
+                    <option value="6">Cyclone</option>
+                </select>
+
+                <h3>Select Ridges</h3>
+                <select name="ridges" id="ridges">
+                    <option value="0">NA</option>
+                    <option value="1">Pacific</option>
+                    <option value="2">Arabian</option>
+                </select>
+
+                <h3>Select MJO</h3>
+                <select name="mjo" id="mjo">
+                    <option value="0">Phase 2</option>
+                    <option value="1">Phase 3</option>
+                </select>
+
+                <h3>Enter sea temperature</h3>
+                <input name="sea_temp" id="temperature" placeholder="Enter sea temperature" type="number">
+
+                <h3>Enter Wind Shear Knots</h3>
+                <input name="shear" id="shear" placeholder="Enter wind shear knots" type="number">
+
+            </div>
+
+        </form>
+
+        <button id="sub_btn" onclick="submit()">Predict</button><br><br>
+
+
+
+        
+
+        <br><br>
+
+    </div>
+
+
+    <footer class="foot">
+        <br>
+            <h2>© Storm Prediction Dashboard - Tamil Nadu 2021</h2><br>
+            <h3>Contact - rajkumar.g.2017.mech@rajalakshmi.edu.in</h3><br>
+            <h3>Contact - samratsakha.2017.mech@rajalakshmi.edu.in</h3><br>
+    </footer>
+
+
+</body>
+
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    height: 100%;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    text-shadow: 2px 2px #000000;
+    font-weight: bolder;
+    background-color: black;
+    text-align: center;
+}
+
+.main-content{
+    background: url("https://i.pinimg.com/originals/b3/73/67/b37367bbe1cdf625774695d5b45b22da.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-bottom: 0;
+}
+
+.foot{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    background-color: black;
+    color: rgb(255, 255, 255);
+}
+
+
+#get_value{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
+
+
+header{
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.4);
+    font-family: 'Cinzel', serif;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    position: sticky;
+    top: 0;
+}
+
+
+header h1{
+    margin: 1%;
+}
+
+
+.div_5{
+    display: flex;
+    margin: 2%;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    font-size: x-large;
+}
+
+.div_1{
+    display: flex;
+    flex-direction: column;
+    margin: 2%;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    font-size: x-large;
+}
+
+.div_1 select{
+    margin: 2%;
+}
+
+.div_1 input{
+    margin: 2%;
+}
+
+#sub_btn{
+    height: 30px;
+    width: 100px;
+    font-size: larger;
+    border-radius: 10px;
+}
+
+
+#sub_btn:hover{
+    cursor: pointer;
+    background-color: rgb(30, 255, 0);
+}
+
+#platform{
+    margin-bottom: 2%;
+}
+
+#platform_2{
+    margin-bottom: 1%;
+}
+
+
+
+
+/*   FOR MOBILE USERS    */
+
+@media only screen and (max-width:400px){
+    
+}
+
+</style>
+
+
+
+<script type="text/javascript"> 
+
+function submit(){
+    let temperature =  document.getElementById("temperature").value;
+    let shear = document.getElementById("shear").value;
+    if(temperature.trim()==""){
+        alert("Enter sea temperature");
+        document.getElementById("temperature").style.border = "solid 3px red";
+        return;
+    }
+    else if(temperature>=50 || temperature<=18){
+        alert("Enter proper temperature of sea in Bay of Bengal");
+        document.getElementById("temperature").style.border = "solid 3px red";
+        return;
+    }
+    else{
+        document.getElementById("temperature").style.border = "none";
+    }
+    if(shear.trim()==""){
+        alert("Enter wind shear knots");
+        document.getElementById("shear").style.border = "solid 3px red";
+        return;
+    }
+    else if(shear>=51 || shear<0){
+        alert("Enter proper wind shear knots");
+        document.getElementById("shear").style.border = "solid 3px red";
+        return;
+    }
+    else{
+        document.getElementById("shear").style.border = "none";
+    }
+    document.getElementById("myform").submit();
+}
+
+
+   
+
+</script>
+
+
+
+
+</html>

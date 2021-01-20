@@ -28,14 +28,14 @@ def classify():
             direction="West - NorthWest"
         elif(predictions==1):
             direction="West - SouthWest"
-        elif(prediction==2):
+        elif(predictions==2):
             direction="NorthWest"
         elif(predictions==3):
             direction="West"
         elif(predictions==4):
             direction="North"
 
-        return render_template('index.html',prediction_text=direction)
+        return render_template('index.html',prediction_text=direction) 
 
     else:
         return render_template('index.html')
